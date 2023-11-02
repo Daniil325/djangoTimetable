@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block left %}
+    <ul class="list">
+        {% for obj in objs %}
+		<li class="list-item"><a href="{% url 'timetable_g' obj.slug curr_week %}">{{ obj.name }}</a></li>
+	{% endfor %}
+    </ul>
+
+    <img src="/media/main.jpg" width="750" height="500" alt="">
+    <h3>
+        <a href="{% url 'index' %}">На главную</a>
+    </h3>
+
+{% endblock %}
+
+{% block right %}
+    <div class="right-menu-calendar-container">
+        <div class="right-menu-calendar" id="right-menu-calendar">
+
+        </div>
+        <div class="calendar-buttons">
+            <p id="prev" title="предыдущий месяц">&larr;</p>
+            <p id="next" title="следующий месяц">&rarr;</p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Расписание</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+{% include "general_areas/header.html" %}
+
+<main class="main">
+    <h1 class="page-title">{{ title }}</h1>
+    <div class="menus-wrapper">
+        <div class="left-menu">
+            {% block left %}<!-- блок с основным контентом(списки, расписание, навигация) -->
+
+            {% endblock %}
+        </div>
+
+        <div class="right-menu">
+			<div class="right-menu-search">
+        		<div class="right-menu-search-container">
+            	<h3 class="search-title">Поиск</h3>
+            	<form action="{% url 'search_result' %}" method="get">
+					<div class="search-container">
+						<input class="search-input" type="text" name="search_text">
+						<button class="right-menu-search-button">
+							<img class="search-button-span" src="/media/lupa.png">
+						</button>
+					</div>
+					<fieldset>
+						<legend>Искать по</legend>
+						<input type="radio" id="Преподавателю" name="search_by_t">
+						<label for="Преподавателю">Преподавателю</label><br>
+						<input type="radio" id="Группе" name="search_by_g">
+						<label for="Группе">Группе</label><br>
+						<input type="radio" id="Аудитории" name="search_by_a">
+						<label for="Аудитории">Аудитории</label>
+					</fieldset>
+				</form>
+        	</div>
+			</div>
+            {% block right %}<!-- блок с календарем -->
+            {% endblock %}
+        </div>
+    </div>
+</main>
+
+<script src="{% static "js/main.js" %}"></script>
+
+</body>
+</html>

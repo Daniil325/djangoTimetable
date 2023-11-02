@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block left %}
+	<a href="{% url 'timetable_t'  curr_slug  curr_week|add:-1  %}">неделя назад</a>
+	<a href="{% url 'timetable_t'  curr_slug  curr_week|add:1  %}">неделя вперед</a>
+    <div class="timetable-wrapper">
+		<div class="timetable-header">
+			<div class="timetable-header-date">Дата</div>
+			<div class="timetable-header-time">Время</div>
+			<div class="timetable-header-subject">Предмет</div>
+			<div class="timetable-header-teacher">Преподаватель</div>
+			<div class="timetable-header-group">Группа</div>
+			<div class="timetable-header-audience">Аудитория</div>
+		</div>
+		<div class="timetable-content">
+			{% for obj in objs %}
+				<div class="timetable-item">
+					<div class="timetable-date">
+						<p>{{ obj.date }}</p>
+					</div>
+					<div class="timetable-time">
+						{{ obj.time_class }}
+					</div>
+					<div class="timetable-subjects">
+						<ul class="subject-list">
+							<li class="subject-item">{{ obj.subject }}</li>
+						</ul>
+					</div>
+					<div class="timetable-teacher">
+						<p>{{ obj.teacher }}</p>
+					</div>
+					<div class="timetable-group">
+						<p>{{ obj.group }}</p>
+					</div>
+					<div class="timetable-audience">
+						<p>{{ obj.audience }}</p>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+    <h3>
+        <a href="{% url 'index' %}">На главную</a>
+    </h3>
+
+{% endblock %}
+
+{% block right %}
+    <div class="right-menu-calendar-container">
+        <div class="right-menu-calendar" id="right-menu-calendar">
+
+        </div>
+        <div class="calendar-buttons">
+            <p id="prev" title="предыдущий месяц">&larr;</p>
+            <p id="next" title="следующий месяц">&rarr;</p>
+        </div>
+    </div>
+{% endblock %}
